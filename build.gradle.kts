@@ -8,12 +8,20 @@ plugins {
     kotlin("kapt") version "1.8.20"
     kotlin("plugin.lombok") version "2.0.0"
     id("io.freefair.lombok") version "5.3.0"
+    id("org.ajoberstar.grgit") version "4.1.1"
     id("com.github.johnrengelman.shadow") version "7.1.2"
+}
+
+var currentBranch: String = grgit.branch.current().name
+if (currentBranch != "master") {
+    println("Starting in development mode")
 }
 
 allprojects {
     group = "gg.scala.robots"
-    version = "1.4.0"
+    version = "1.4.0${
+        if (currentBranch != "master") "-dev" else ""
+    }"
 
     repositories {
         mavenCentral()
@@ -93,7 +101,7 @@ publishing {
 tasks.getByName("build")
     .dependsOn(
         "shadowJar",
-        "publishShadowPublicationToScalaRepository"
+        "publishMavenJavaPublicationToScalaRepository"
     )
 
 fun RepositoryHandler.configureScalaRepository(dev: Boolean = false) {
