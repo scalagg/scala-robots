@@ -4,8 +4,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     java
     `maven-publish`
-    kotlin("jvm") version "1.8.20"
-    kotlin("kapt") version "1.8.20"
+    kotlin("jvm") version "2.0.0"
+    kotlin("kapt") version "2.0.0"
     kotlin("plugin.lombok") version "2.0.0"
     id("io.freefair.lombok") version "5.3.0"
     id("org.ajoberstar.grgit") version "4.1.1"
@@ -25,10 +25,8 @@ allprojects {
 
     repositories {
         mavenCentral()
-
-        maven {
-            url = uri("https://repo.dmulloy2.net/repository/public/")
-        }
+        mavenLocal()
+        maven("https://repo.dmulloy2.net/repository/public/")
 
         configureScalaRepository()
     }
@@ -36,6 +34,9 @@ allprojects {
 
 dependencies {
     compileOnly(kotlin("stdlib"))
+
+    compileOnly("org.projectlombok:lombok:1.18.24")
+    annotationProcessor("org.projectlombok:lombok:1.18.24")
 
     kapt("gg.scala.commons:bukkit:4.0.1")
     compileOnly("gg.scala.commons:bukkit:4.0.1")
@@ -53,26 +54,10 @@ dependencies {
 
     compileOnly("gg.scala.practice.mi:lobby:1.3.0")
     compileOnly("gg.scala.practice.mi:game:1.3.0")
-
-    compileOnly("org.projectlombok:lombok:1.18.24")
-    annotationProcessor("org.projectlombok:lombok:1.18.24")
 }
 
-kotlin {
-    jvmToolchain(jdkVersion = 17)
-}
-
-tasks.withType<ShadowJar> {
-    archiveClassifier.set("")
-    exclude(
-        "**/*.kotlin_metadata",
-        "**/*.kotlin_builtins",
-        "META-INF/"
-    )
-
-    archiveFileName.set(
-        "scala-robots-plugin.jar"
-    )
+kapt {
+    keepJavacAnnotationProcessors = true
 }
 
 tasks.withType<JavaCompile> {
@@ -81,13 +66,44 @@ tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.javaParameters = true
-    kotlinOptions.jvmTarget = "17"
+kotlin {
+    jvmToolchain(jdkVersion = 17)
+}
+
+tasks {
+    withType<ShadowJar> {
+        archiveClassifier.set("")
+        exclude(
+            "**/*.kotlin_metadata",
+            "**/*.kotlin_builtins"
+        )
+
+        archiveFileName.set(
+            "scala-robots.jar"
+        )
+    }
+
+    withType<JavaCompile> {
+        options.compilerArgs.add("-parameters")
+        options.fork()
+        options.encoding = "UTF-8"
+    }
+
+    withType<KotlinCompile> {
+        kotlinOptions.javaParameters = true
+        kotlinOptions.jvmTarget = "17"
+    }
+
+    getByName("build") {
+        dependsOn(
+            "shadowJar",
+            "publishMavenJavaPublicationToScalaRepository"
+        )
+    }
 }
 
 publishing {
-    repositories.configureScalaRepository(dev = false)
+    repositories.configureScalaRepository(dev = currentBranch != "master")
 
     publications {
         register(
@@ -97,12 +113,6 @@ publishing {
         )
     }
 }
-
-tasks.getByName("build")
-    .dependsOn(
-        "shadowJar",
-        "publishMavenJavaPublicationToScalaRepository"
-    )
 
 fun RepositoryHandler.configureScalaRepository(dev: Boolean = false) {
     maven("${property("artifactory_contextUrl")}/gradle-${if (dev) "dev" else "release"}") {
