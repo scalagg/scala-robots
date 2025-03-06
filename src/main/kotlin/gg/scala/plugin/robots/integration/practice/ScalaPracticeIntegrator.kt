@@ -96,7 +96,7 @@ object ScalaPracticeIntegrator
                 "profile"
             )
 
-            if (metadata == "combo")
+            if (game.flag(FeatureFlag.NoHitDelay))
             {
                 bot.damageManager.isCombo = true
             }

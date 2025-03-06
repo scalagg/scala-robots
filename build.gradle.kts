@@ -19,7 +19,7 @@ if (currentBranch != "master") {
 
 allprojects {
     group = "gg.scala.robots"
-    version = "1.4.5${
+    version = "1.4.6${
         if (currentBranch != "master") "-dev" else ""
     }"
 
@@ -52,8 +52,8 @@ dependencies {
     compileOnly("gg.scala.lemon:bukkit:1.8.1")
     compileOnly("gg.scala.cloudsync:spigot:1.0.1")
 
-    compileOnly("gg.scala.practice.mi:lobby:1.3.0")
-    compileOnly("gg.scala.practice.mi:game:1.3.0")
+    compileOnly("gg.scala.practice.mi:lobby:1.3.2")
+    compileOnly("gg.scala.practice.mi:game:1.3.2")
 }
 
 kapt {
