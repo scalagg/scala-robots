@@ -90,7 +90,7 @@ class BotFightMenu(private val viewer: Player) : PaginatedMenu()
             }
     }
 
-    override fun size(buttons: Map<Int, Button>) = if (shouldExpand()) 54 else 36
+    override fun size(buttons: Map<Int, Button>) = if (shouldExpand()) 63 else 45
     override fun getAllPagesButtons(player: Player): Map<Int, Button>
     {
         val buttons = mutableMapOf<Int, Button>()
@@ -161,8 +161,8 @@ class BotFightMenu(private val viewer: Player) : PaginatedMenu()
     private fun Player.hasPermissionForCustomBots() = player.hasPermission("botgui.use") || FreeBotFridays.isFreeBotFriday()
 
     override fun getMaxItemsPerPage(player: Player) = getAllPagesButtonSlots().size
-    override fun getPageButtonSlots() = 29 to 33
-    override fun getAllPagesButtonSlots() = (37..43).toList()
+    override fun getPageButtonSlots() = 38 to 42
+    override fun getAllPagesButtonSlots() = (46..52).toList()
 
     private fun shouldExpand(): Boolean
     {
@@ -175,14 +175,26 @@ class BotFightMenu(private val viewer: Player) : PaginatedMenu()
     override fun getGlobalButtons(player: Player): Map<Int, Button>
     {
         val buttons = mutableMapOf(
+            //Tiered difficulty bots
             10 to player.buildNewItem("EASY", "${CC.GREEN}Easy", 5),
             11 to player.buildNewItem("NORMAL", "${CC.YELLOW}Normal", 4),
             12 to player.buildNewItem("HARD", "${CC.RED}Hard", 14),
             13 to player.buildNewItem("EXPERT", "${CC.D_RED}Expert", 14),
-            14 to player.buildNewItem("NIGHTMARE", "${CC.DARK_PURPLE}Nightmare", 10),
+            14 to player.buildNewItem("DEVIL", "${CC.DARK_PURPLE}Devil", 10),
 
+            //Special bots
             19 to player.buildNewItem("CLOWN", "${CC.PINK}Clown", 6, true),
-            20 to player.buildNewItem("MARTIAN", "${CC.GOLD}Martian", 12, true),
+            20 to player.buildNewItem("MARTIAN", "${CC.GREEN}Martian", 13, true),
+            21 to player.buildNewItem("SAMURAI", "${CC.GOLD}Samurai", 1, true),
+
+            //Media bots
+            28 to player.buildNewItem("MARCEL", "${CC.PINK}Marcel", 6, true),
+            29 to player.buildNewItem("JEWDAH", "${CC.PINK}Jewdah", 6, true),
+            30 to player.buildNewItem("IUSEHUZUNI", "${CC.PINK}iusehuzuni", 6, true),
+            31 to player.buildNewItem("STRAIGHT", "${CC.PINK}Straight", 6, true),
+            32 to player.buildNewItem("SKEPPY", "${CC.PINK}Skeppy", 6, true),
+            33 to player.buildNewItem("PENGO", "${CC.PINK}Pengo", 6, true),
+            34 to player.buildNewItem("CALVIN", "${CC.PINK}Calvin", 6, true),
 
             31 to ItemBuilder.of(Material.EMERALD)
                 .name("&aCustomized Bots")
@@ -268,17 +280,17 @@ class BotFightMenu(private val viewer: Player) : PaginatedMenu()
                 .toButton()
         }
 
-        (27..35).forEach {
-            if (it == 29 || it == 31)
-            {
-                return@forEach
-            }
-
-            buttons.putIfAbsent(it, ItemBuilder
-                .of(XMaterial.BLACK_STAINED_GLASS_PANE)
-                .name(" ")
-                .toButton())
-        }
+//        (27..35).forEach {
+//            if (it == 29 || it == 31)
+//            {
+//                return@forEach
+//            }
+//
+//            buttons.putIfAbsent(it, ItemBuilder
+//                .of(XMaterial.BLACK_STAINED_GLASS_PANE)
+//                .name(" ")
+//                .toButton())
+//        }
 
         // side placeholders
         listOf(17, 26).forEach {
@@ -304,6 +316,16 @@ class BotFightMenu(private val viewer: Player) : PaginatedMenu()
                 .name("&6Special")
                 .addToLore(
                     "${CC.GRAY}Seasonal, or other special bots."
+                )
+                .toButton()
+        }
+
+        listOf(27, 35).forEach {
+            buttons[it] = ItemBuilder
+                .of(XMaterial.PINK_STAINED_GLASS_PANE)
+                .name("&dMedia")
+                .addToLore(
+                    "${CC.GRAY}Fight your favorite content creators!."
                 )
                 .toButton()
         }

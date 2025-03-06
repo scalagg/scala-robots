@@ -9,6 +9,7 @@ import net.evilblock.cubed.util.bukkit.Constants
 import net.evilblock.cubed.util.bukkit.ItemBuilder
 import org.bukkit.Material
 import org.bukkit.entity.Player
+import org.bukkit.inventory.ItemFlag
 
 /**
  * @author Topu
@@ -26,6 +27,10 @@ class SelectBotFightMenu : Menu("Select a robot type...")
         this[12] = ItemBuilder
             .of(Material.GOLD_SWORD)
             .name("${CC.GOLD}Practice")
+            .addFlags(
+                ItemFlag.HIDE_ATTRIBUTES,
+                ItemFlag.HIDE_ENCHANTS
+            )
             .addToLore(
                 "",
                 "${CC.B_PRI}Info:",
@@ -33,15 +38,10 @@ class SelectBotFightMenu : Menu("Select a robot type...")
                 "${CC.GRAY}${Constants.THIN_VERTICAL_LINE}${CC.SEC} of Bot Difficulties with",
                 "${CC.GRAY}${Constants.THIN_VERTICAL_LINE}${CC.SEC} personalized selections.",
                 "",
-                "${CC.B_PRI}Difficulties:",
-                "${CC.GRAY}${Constants.THIN_VERTICAL_LINE} ${CC.GREEN}Easy",
-                "${CC.GRAY}${Constants.THIN_VERTICAL_LINE} ${CC.YELLOW}Normal",
-                "${CC.GRAY}${Constants.THIN_VERTICAL_LINE} ${CC.RED}Hard",
-                "${CC.GRAY}${Constants.THIN_VERTICAL_LINE} ${CC.DARK_RED}Expert",
-                "${CC.GRAY}${Constants.THIN_VERTICAL_LINE} ${CC.DARK_PURPLE}Nightmare",
-                "${CC.GRAY}${Constants.THIN_VERTICAL_LINE} ${CC.LIGHT_PURPLE}Clown",
-                "${CC.GRAY}${Constants.THIN_VERTICAL_LINE} ${CC.GOLD}Martian",
-                "${CC.GRAY}${Constants.THIN_VERTICAL_LINE} ${CC.AQUA}Custom",
+                "${CC.B_PRI}Bot Types:",
+                "${CC.GRAY}${Constants.THIN_VERTICAL_LINE} ${CC.GREEN}Tiered Bots",
+                "${CC.GRAY}${Constants.THIN_VERTICAL_LINE} ${CC.GOLD}Special Bots",
+                "${CC.GRAY}${Constants.THIN_VERTICAL_LINE} ${CC.PINK}Media Bots",
                 "",
                 "${CC.GREEN}Click to browse!"
             )
@@ -65,6 +65,10 @@ class SelectBotFightMenu : Menu("Select a robot type...")
         this[14] = ItemBuilder
             .of(Material.IRON_SWORD)
             .name("${CC.YELLOW}Unranked")
+            .addFlags(
+                ItemFlag.HIDE_ATTRIBUTES,
+                ItemFlag.HIDE_ENCHANTS
+            )
             .addToLore(
                 "",
                 "${CC.B_PRI}Info:",
