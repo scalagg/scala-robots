@@ -325,7 +325,7 @@ class BotFightMenu(private val viewer: Player) : PaginatedMenu()
                 .of(XMaterial.PINK_STAINED_GLASS_PANE)
                 .name("&dMedia")
                 .addToLore(
-                    "${CC.GRAY}Fight your favorite content creators!."
+                    "${CC.GRAY}Fight your favorite content creators."
                 )
                 .toButton()
         }
