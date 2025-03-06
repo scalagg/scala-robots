@@ -24,6 +24,7 @@ class GenericDescribeProfilesMenu(
 
     private fun Int.toRow() = (1..7).map { it + this * 9 }
     override fun getAllPagesButtonSlots() = 1.toRow()
+    override fun getMaxItemsPerPage(player: Player) = 7
     override fun size(buttons: Map<Int, Button>) = 27
 
     override fun getAllPagesButtons(player: Player): Map<Int, Button>

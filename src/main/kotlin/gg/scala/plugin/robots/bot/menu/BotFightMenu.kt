@@ -189,14 +189,14 @@ class BotFightMenu(private val viewer: Player) : PaginatedMenu()
 
             //Media bots
             28 to player.buildNewItem("MARCEL", "${CC.PINK}Marcel", 6, true),
-            29 to player.buildNewItem("JEWDAH", "${CC.PINK}Jewdah", 6, true),
+            29 to player.buildNewItem("VERZIDE", "${CC.PINK}Verzide", 6, true),
             30 to player.buildNewItem("IUSEHUZUNI", "${CC.PINK}iusehuzuni", 6, true),
             31 to player.buildNewItem("STRAIGHT", "${CC.PINK}Straight", 6, true),
             32 to player.buildNewItem("SKEPPY", "${CC.PINK}Skeppy", 6, true),
             33 to player.buildNewItem("PENGO", "${CC.PINK}Pengo", 6, true),
             34 to player.buildNewItem("CALVIN", "${CC.PINK}Calvin", 6, true),
 
-            31 to ItemBuilder.of(Material.EMERALD)
+            40 to ItemBuilder.of(Material.EMERALD)
                 .name("&aCustomized Bots")
                 .addToLore(
                     "${CC.GRAY}Play against a customized",
@@ -280,17 +280,17 @@ class BotFightMenu(private val viewer: Player) : PaginatedMenu()
                 .toButton()
         }
 
-//        (27..35).forEach {
-//            if (it == 29 || it == 31)
-//            {
-//                return@forEach
-//            }
-//
-//            buttons.putIfAbsent(it, ItemBuilder
-//                .of(XMaterial.BLACK_STAINED_GLASS_PANE)
-//                .name(" ")
-//                .toButton())
-//        }
+        (36 .. 44).forEach {
+            if (it == 29 || it == 31)
+            {
+                return@forEach
+            }
+
+            buttons.putIfAbsent(it, ItemBuilder
+                .of(XMaterial.BLACK_STAINED_GLASS_PANE)
+                .name(" ")
+                .toButton())
+        }
 
         // side placeholders
         listOf(17, 26).forEach {
@@ -332,14 +332,14 @@ class BotFightMenu(private val viewer: Player) : PaginatedMenu()
 
         if (shouldExpand())
         {
-            (45..53).forEach {
+            (54..63).forEach {
                 buttons.putIfAbsent(it, ItemBuilder
                     .of(XMaterial.BLACK_STAINED_GLASS_PANE)
                     .name(" ")
                     .toButton())
             }
 
-            listOf(36, 44).forEach {
+            listOf(45, 53).forEach {
                 buttons[it] = ItemBuilder
                     .of(XMaterial.LIGHT_BLUE_STAINED_GLASS_PANE)
                     .name("&bCustom ${CC.GRAY}(Page #$page)")
