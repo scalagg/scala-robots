@@ -26,6 +26,9 @@ public class LagCompensatorManager extends Manager {
 
     @Nullable
     public Player getPlayer() {
+        if (getBot().getMovements() == null || getBot().getMovements().getTargetLocate() == null) {
+            return null;
+        }
         return getBot().getMovements().getTargetLocate().getTargetEntity();
     }
 

@@ -19,7 +19,7 @@ if (currentBranch != "master") {
 
 allprojects {
     group = "gg.scala.robots"
-    version = "1.4.6${
+    version = "1.4.7${
         if (currentBranch != "master") "-dev" else ""
     }"
 
