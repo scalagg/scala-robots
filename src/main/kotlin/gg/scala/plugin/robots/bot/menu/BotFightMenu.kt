@@ -11,7 +11,7 @@ import gg.scala.plugin.robots.bot.profile.RobotProfileService
 import gg.scala.plugin.robots.bot.setting.BotSettingService
 import gg.scala.plugin.robots.bot.setting.setting.persistence.SettingProfile
 import gg.scala.plugin.robots.bot.setting.setting.root
-import gg.scala.plugin.robots.integration.practice.freebotfridays.FreeBotFridays
+import gg.scala.plugin.robots.integration.practice.freebotweekends.FreeBotWeekends
 import net.evilblock.cubed.menu.Button
 import net.evilblock.cubed.menu.buttons.TexturedHeadButton
 import net.evilblock.cubed.menu.menus.ConfirmMenu
@@ -158,7 +158,7 @@ class BotFightMenu(private val viewer: Player) : PaginatedMenu()
         return buttons
     }
 
-    private fun Player.hasPermissionForCustomBots() = player.hasPermission("botgui.use") || FreeBotFridays.isFreeBotFriday()
+    private fun Player.hasPermissionForCustomBots() = player.hasPermission("botgui.use") || FreeBotWeekends.isFreeBotFriday()
 
     override fun getMaxItemsPerPage(player: Player) = getAllPagesButtonSlots().size
     override fun getPageButtonSlots() = 38 to 42
@@ -213,7 +213,7 @@ class BotFightMenu(private val viewer: Player) : PaginatedMenu()
                         return@apply
                     }
 
-                    if (FreeBotFridays.isFreeBotFriday())
+                    if (FreeBotWeekends.isFreeBotFriday())
                     {
                         addToLore(
                             "${CC.B_GOLD}${CC.MAGIC}AAA${CC.B_GOLD} IT'S FREE BOT WEEKEND! ${CC.B_GOLD}${CC.MAGIC}AAA",
@@ -230,12 +230,12 @@ class BotFightMenu(private val viewer: Player) : PaginatedMenu()
                             "${CC.WHITE}access to custom bots every",
                             "${CC.WHITE}Friday from ${CC.GOLD}3:30PM${CC.WHITE} to Saturday ${CC.GOLD}10:00PM${CC.WHITE} EST!",
                             "",
-                            "${CC.B_WHITE}Next event: ${CC.WHITE}${FreeBotFridays.fancyStatus()}"
+                            "${CC.B_WHITE}Next event: ${CC.WHITE}${FreeBotWeekends.fancyStatus()}"
                         )
                     }
                 }
                 .toButton { _, type ->
-                    if (!(player.hasPermission("botgui.use") || FreeBotFridays.isFreeBotFriday()))
+                    if (!(player.hasPermission("botgui.use") || FreeBotWeekends.isFreeBotFriday()))
                     {
                         Button.playFail(player)
                         player.sendMessage("${CC.RED}You need ${CC.GREEN}Ember${CC.RED} rank to use this feature!")

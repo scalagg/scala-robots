@@ -1,4 +1,4 @@
-package gg.scala.plugin.robots.integration.practice.freebotfridays
+package gg.scala.plugin.robots.integration.practice.freebotweekends
 
 import gg.scala.flavor.service.Configure
 import gg.scala.flavor.service.Service
@@ -28,9 +28,12 @@ object NpcTextUpdater : Runnable
     {
         getNpcEntities()
             .forEach {
-                it.hologram.updateLines(
-                    handle(it.getLines())
-                )
+                if (it.condition != "freebotweekends") {
+                    return@forEach
+                }
+                    it.hologram.updateLines(
+                        handle(it.getLines())
+                    )
             }
     }
 
@@ -43,8 +46,8 @@ object NpcTextUpdater : Runnable
         {
             replaced.add(
                 message.replace(
-                    "%freebotfridays-status%",
-                    FreeBotFridays.fancyStatus()
+                    "%freebotweekends-status%",
+                    FreeBotWeekends.fancyStatus()
                 )
             )
         }

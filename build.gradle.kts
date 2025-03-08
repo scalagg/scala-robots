@@ -19,7 +19,7 @@ if (currentBranch != "master") {
 
 allprojects {
     group = "gg.scala.robots"
-    version = "1.4.7${
+    version = "1.4.8${
         if (currentBranch != "master") "-dev" else ""
     }"
 
@@ -38,8 +38,8 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.24")
     annotationProcessor("org.projectlombok:lombok:1.18.24")
 
-    kapt("gg.scala.commons:bukkit:4.0.1")
-    compileOnly("gg.scala.commons:bukkit:4.0.1")
+    kapt("gg.scala.commons:bukkit:4.0.2")
+    compileOnly("gg.scala.commons:bukkit:4.0.2")
 
     compileOnly("gg.scala.cgs:parties:1.4.3")
     compileOnly("gg.scala.store:spigot:0.1.8")

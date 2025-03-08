@@ -1,4 +1,4 @@
-package gg.scala.plugin.robots.integration.practice.freebotfridays
+package gg.scala.plugin.robots.integration.practice.freebotweekends
 
 import net.evilblock.cubed.util.CC
 import java.time.*
@@ -7,7 +7,7 @@ import java.time.*
  * @author GrowlyX
  * @since 8/9/2024
  */
-object FreeBotFridays
+object FreeBotWeekends
 {
     private val newYorkLocalEST = ZoneId.of("America/New_York")
 
@@ -94,7 +94,7 @@ object FreeBotFridays
     {
         if (isFreeBotFriday())
         {
-            return "${CC.GOLD}NOW!"
+            return "${CC.GREEN}NOW!"
         }
 
         return "${CC.GREEN}${
