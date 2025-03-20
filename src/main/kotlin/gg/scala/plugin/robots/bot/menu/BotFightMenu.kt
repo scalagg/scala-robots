@@ -158,7 +158,7 @@ class BotFightMenu(private val viewer: Player) : PaginatedMenu()
         return buttons
     }
 
-    private fun Player.hasPermissionForCustomBots() = player.hasPermission("botgui.use") || FreeBotWeekends.isFreeBotFriday()
+    private fun Player.hasPermissionForCustomBots() = player.hasPermission("botgui.use") || FreeBotWeekends.isFreeBotWeekends()
 
     override fun getMaxItemsPerPage(player: Player) = getAllPagesButtonSlots().size
     override fun getPageButtonSlots() = 38 to 42
@@ -213,7 +213,7 @@ class BotFightMenu(private val viewer: Player) : PaginatedMenu()
                         return@apply
                     }
 
-                    if (FreeBotWeekends.isFreeBotFriday())
+                    if (FreeBotWeekends.isFreeBotWeekends())
                     {
                         addToLore(
                             "${CC.B_GOLD}${CC.MAGIC}AAA${CC.B_GOLD} IT'S FREE BOT WEEKEND! ${CC.B_GOLD}${CC.MAGIC}AAA",
@@ -234,8 +234,8 @@ class BotFightMenu(private val viewer: Player) : PaginatedMenu()
                         )
                     }
                 }
-                .toButton { _, type ->
-                    if (!(player.hasPermission("botgui.use") || FreeBotWeekends.isFreeBotFriday()))
+                .toButton { _, _ ->
+                    if (!player.hasPermission("botgui.use") && !FreeBotWeekends.isFreeBotWeekends())
                     {
                         Button.playFail(player)
                         player.sendMessage("${CC.RED}You need ${CC.GREEN}Ember${CC.RED} rank to use this feature!")

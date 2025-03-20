@@ -18,7 +18,7 @@ object FreeBotWeekendsCommand : ScalaCommand()
     @CommandAlias("freebotweekends|fbw")
     fun onBotCustomizer(player: ScalaPlayer)
     {
-        if (FreeBotWeekends.isFreeBotFriday())
+        if (FreeBotWeekends.isFreeBotWeekends())
         {
             player.sendMessage("${CC.GREEN}It is currently Free Bot Weekends!")
             return

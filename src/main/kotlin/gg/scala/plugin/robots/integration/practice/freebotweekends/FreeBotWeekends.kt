@@ -14,7 +14,7 @@ object FreeBotWeekends
     private val fbfStart = LocalTime.of(15, 30) // 3:30PM EST
     private val fbfEnd = LocalTime.of(22, 0) // 10PM EST
 
-    fun isFreeBotFriday(): Boolean
+    fun isFreeBotWeekends(): Boolean
     {
         val now = ZonedDateTime.now(newYorkLocalEST)
         val currentTime = now.toLocalTime()
@@ -92,7 +92,7 @@ object FreeBotWeekends
 
     fun fancyStatus(): String
     {
-        if (isFreeBotFriday())
+        if (isFreeBotWeekends())
         {
             return "${CC.GREEN}NOW!"
         }

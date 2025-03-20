@@ -151,7 +151,7 @@ object ScalaPracticeIntegrator
                     robot.gameLifecycleArbitraryObjectiveProgress += 1
                     game.humanSide().playerCombos.clear()
 
-                    val dataPlayer = instance!!.dataManager.getPlayer(event.player)
+                    val dataPlayer = instance.dataManager.getPlayer(event.player)
                     dataPlayer?.botHit()
 
                     if (robot.gameLifecycleArbitraryObjectiveProgress >= metadata)
