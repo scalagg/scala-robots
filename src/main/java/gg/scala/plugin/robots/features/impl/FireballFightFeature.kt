@@ -2,7 +2,7 @@ package gg.scala.plugin.robots.features.impl
 
 import gg.scala.plugin.robots.features.Feature
 
-class FireballFightFeature : _root_ide_package_.gg.scala.plugin.robots.features.Feature()
+class FireballFightFeature : Feature()
 {
 //    override fun tickEvent(bot: Bot?)
 //    {

@@ -1,6 +1,7 @@
 package gg.scala.plugin.robots.bot.setting.setting
 
 import gg.scala.plugin.robots.bot.setting.setting.persistence.SettingProfile
+import gg.scala.plugin.robots.integration.practice.freebotweekends.FreeBotWeekends
 import net.evilblock.cubed.serializers.impl.AbstractTypeSerializable
 import net.evilblock.cubed.util.CC
 import net.evilblock.cubed.util.bukkit.ItemBuilder
@@ -23,7 +24,7 @@ interface SettingLike : AbstractTypeSerializable
 
     fun hasPermission(player: Player): Boolean
     {
-        return permission == null || player.hasPermission(permission)
+        return permission == null || FreeBotWeekends.isFreeBotWeekends() || player.hasPermission(permission)
     }
 
     fun toItemStack(player: Player, context: SettingProfile): ItemStack
